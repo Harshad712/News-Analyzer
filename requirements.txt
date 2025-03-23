@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+transformers
+torch
+gtts
+deep-translator
+beautifulsoup4
+requests
+pydantic
+spacy
