@@ -1,7 +1,7 @@
 
 # News Analyzer  
 
-### ** Overview**  
+###  Overview  
 The **News Analyzer** is a full-stack application that:  
 - **Scrapes news articles** for a given company using BeautifulSoup.  
 - **Performs summarization** on the extracted news articles.  
@@ -14,33 +14,33 @@ The **News Analyzer** is a full-stack application that:
 
 ---
 
-## ** 1. Project Setup (Installation & Running)**  
+##  1. Project Setup (Installation & Running) 
 
-### ** Step 1: Clone the Repository**  
+###  Step 1: Clone the Repository  
 ```bash
-git clone https://github.com/your-username/news-analyzer.git
+git clone https://github.com/Harshad/News-Analyzer.git
 cd news-analyzer
 ```
 
-### ** Step 2: Create a Virtual Environment**  
+###  Step 2: Create a Virtual Environment  
 ```bash
 python -m venv news_env
 source news_env/bin/activate   # On macOS/Linux
 news_env\Scripts\activate      # On Windows
 ```
 
-### ** Step 3: Install Dependencies**  
+###  Step 3: Install Dependencies  
 ```bash
 pip install -r requirements.txt
 ```
 
-### ** Step 4: Run the Backend API**  
+###  Step 4: Run the Backend API  
 ```bash
 uvicorn api:app --host 0.0.0.0 --port 8000 --reload
 ```
  **FastAPI will start running at:** `http://127.0.0.1:8000/docs`
 
-### ** Step 5: Run the Gradio Frontend**  
+###  Step 5: Run the Gradio Frontend  
 ```bash
 python app.py
 ```
@@ -48,30 +48,30 @@ python app.py
 
 ---
 
-## ** 2. Model Details**  
+##  2. Model Details  
 
 The project uses the following models:
 
-### ** Summarization Model**
+###  Summarization Model
 - **Model:** `facebook/bart-large-cnn`
 - **Purpose:** Extracts a concise summary of news articles.
 - **Why Chosen?** It is pre-trained for text summarization and performs well on news data.
 
-### ** Sentiment Analysis Model**
+###  Sentiment Analysis Model
 - **Model:** `distilbert-base-uncased-finetuned-sst-2-english`
 - **Purpose:** Classifies news articles as **Positive, Negative, or Neutral.**
 - **Why Chosen?** A lightweight and accurate sentiment analysis model from Hugging Face.
 
-### ** Text-to-Speech (TTS) Model**
+###  Text-to-Speech (TTS) Model
 - **Model:** `gTTS (Google Text-to-Speech)`
 - **Purpose:** Converts the summary into Hindi speech.
 - **Why Chosen?** Supports Hindi and is lightweight for deployment.
 
 ---
 
-## ** 3. API Development**  
+##  3. API Development  
 
-### ** Backend API**
+###  Backend API
 The backend is built using **FastAPI** and provides the following endpoints:
 
 #### **1 Analyze News API**
@@ -114,7 +114,7 @@ The backend is built using **FastAPI** and provides the following endpoints:
 
 ---
 
-## ** 4. API Usage (Third-Party Integrations)**  
+##  4. API Usage (Third-Party Integrations)  
 
 | API/Library      | Purpose |
 |-----------------|-----------------------------------------------------|
@@ -126,14 +126,14 @@ The backend is built using **FastAPI** and provides the following endpoints:
 
 ---
 
-## ** 5. Assumptions & Limitations**  
+##  5. Assumptions & Limitations  
 
-### ** Assumptions**
+###  Assumptions
 - News articles are **scrapable via BeautifulSoup** (non-JS links).
 - Sentiment analysis assumes **generalized polarity** (may not capture nuances).
 - Hindi TTS **uses simple pronunciation** (not 100% natural like human speech).
 
-### ** Limitations**
+###  Limitations
 - **Speed:** Running on CPU can slow down processing.  
    **Solution:** Use a GPU when deploying on Hugging Face Spaces.  
 - **Data Accuracy:** Summarization **may miss key details** in complex articles.  
@@ -143,27 +143,27 @@ The backend is built using **FastAPI** and provides the following endpoints:
 
 ---
 
-## ** 6. Deployment on Hugging Face Spaces**  
+##  6. Deployment on Hugging Face Spaces  
 
-### ** Backend Deployment**
- **1 Create a new Space on Hugging Face** (Select `Docker`).  
- **2 Push Backend Code to the Space:**
+###  Backend Deployment
+ **1. Create a new Space on Hugging Face** (Select `Docker`).  
+ **2. Push Backend Code to the Space:**
 ```bash
 git add .
 git commit -m "Deploying backend"
 git push
 ```
- **3 Check the Logs & Restart if Needed.**
+ **3. Check the Logs & Restart if Needed.**
 
  **Backend URL Example:**  
 ```
 https://Harshad712-news-analyzer-backend.hf.space/analyze-news/
 ```
 
-### **🔹 Frontend Deployment**
- **1 Create a separate Space for the frontend.**  
- **2 Modify `app.py` to point to the deployed backend URL.**  
- **3 Push Frontend Code to the Space:**
+###  Frontend Deployment
+ **1. Create a separate Space for the frontend.**  
+ **2. Modify `app.py` to point to the deployed backend URL.**  
+ **3. Push Frontend Code to the Space:**
 ```bash
 git add .
 git commit -m "Deploying frontend"
@@ -178,12 +178,12 @@ https://Harshad712-news-analyzer-frontend.hf.space/
 
 ---
 
-## ** 7. Future Improvements**  
+##  7. Future Improvements  
  **Improve Model Efficiency** → Use a more optimized model for summarization.  
  **Better UI/UX** → Add interactive visualizations in the Gradio frontend.  
  **Multi-language Support** → Extend to more Indian languages.  
 
-## ** 8. License**  
+##  8. License  
  MIT License - Free to use and modify.
 
 ---
