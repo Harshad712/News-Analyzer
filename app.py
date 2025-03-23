@@ -4,10 +4,11 @@ import requests
 # Backend API URL (Replace with your actual Hugging Face backend URL or with your local backend URL)
 BACKEND_URL = "https://Harshad712-news-analyzer-backend.hf.space/analyze-news/"
 
+
 def analyze_news(company_name):
     """Fetch and analyze news articles for the given company."""
     response = requests.post(BACKEND_URL, json={"company_name": company_name})
-    
+
     if response.status_code == 200:
         data = response.json()
 
@@ -21,6 +22,7 @@ def analyze_news(company_name):
             return data, None
     else:
         return {"error": f"Failed to fetch data. Status Code: {response.status_code}"}, None
+
 
 # Gradio UI
 with gr.Blocks() as app:

@@ -9,6 +9,7 @@ from gtts import gTTS
 import os
 from deep_translator import GoogleTranslator
 
+
 def fetch_news_articles(company, max_articles=10):
     """
     Extracts news articles from BBC News with Title, Author, Full Content, and Metadata.
@@ -44,7 +45,7 @@ def fetch_news_articles(company, max_articles=10):
 
             # Find all articles on the current page
             article_containers = soup.find_all("div", class_="ssrcss-1imfos9-PageStack e1k195vp1")
-            
+
             if not article_containers:
                 print(" No more articles found.")
                 break  # Stop pagination if no more articles are found
@@ -55,7 +56,7 @@ def fetch_news_articles(company, max_articles=10):
                     title_tag = result.find("a", class_="ssrcss-1yagzb7-PromoLink exn3ah95")
                     if not title_tag:
                         continue  # Skip if title isn't found
-                    
+
                     title = title_tag.get_text(strip=True)
                     link = title_tag["href"] if title_tag else None
 
@@ -93,7 +94,7 @@ def fetch_news_articles(company, max_articles=10):
 
         if not articles:
             print(" No articles found. Try adjusting the search term or source.")
-        
+
         return articles
 
     except requests.exceptions.RequestException as e:
@@ -103,6 +104,7 @@ def fetch_news_articles(company, max_articles=10):
 # Initialize pipelines
 summarizer = pipeline("summarization", model="models/bart-large-cnn")
 sentiment_analyzer = pipeline("sentiment-analysis", model="models/distilbert-base-uncased-finetuned-sst-2-english")
+
 
 def summarize_article(content, max_length=130):
     """
@@ -125,6 +127,7 @@ def summarize_article(content, max_length=130):
         print(f" Summarization failed: {e}")
         return "Summary unavailable"
 
+
 def analyze_sentiment(content):
     """
     Analyzes sentiment using a transformer model.
@@ -142,8 +145,10 @@ def analyze_sentiment(content):
         print(f" Sentiment analysis failed: {e}")
         return "Sentiment unavailable"
 
+
 # Load the NLP model
 nlp = spacy.load("en_core_web_sm")
+
 
 def extract_topics(content):
     """
@@ -173,8 +178,8 @@ def extract_topics(content):
             topics.add("Regulations")
         if "autonomous" in content.lower() or "self-driving" in content:
             topics.add("Autonomous Vehicles")
-
     return list(topics)
+
 
 def generate_impact_statement(article_1, article_2, common_topics, unique_1, unique_2):
     """
@@ -194,15 +199,16 @@ def generate_impact_statement(article_1, article_2, common_topics, unique_1, uni
     sentiment_2 = analyze_sentiment(article_2["content"])
 
     if sentiment_1 == "POSITIVE" and sentiment_2 == "NEGATIVE":
-        return f"While '{article_1['title']}' presents an optimistic view, '{article_2['title']}' raises concerns, creating a mixed outlook."
+        return f"While \"{article_1['title']}\" presents an optimistic view, \"{article_2['title']}\" raises concerns, creating a mixed outlook."
     elif sentiment_1 == "NEGATIVE" and sentiment_2 == "POSITIVE":
-        return f"'{article_1['title']}' highlights risks, while '{article_2['title']}' reassures investors with a positive narrative."
+        return f"\"{article_1['title']}\" highlights risks, while \"{article_2['title']}\" reassures investors with a positive narrative."
     elif sentiment_1 == "POSITIVE" and sentiment_2 == "POSITIVE":
-        return f"Both articles support a strong outlook for the company, reinforcing confidence in the market."
+        return "Both articles support a strong outlook for the company, reinforcing confidence in the market."
     elif sentiment_1 == "NEGATIVE" and sentiment_2 == "NEGATIVE":
-        return f"Both articles emphasize risks, signaling potential challenges ahead."
+        return "Both articles emphasize risks, signaling potential challenges ahead."
     else:
-        return f"'{article_1['title']}' and '{article_2['title']}' cover different aspects, offering diverse perspectives on {', '.join(common_topics) if common_topics else 'various topics'}."
+        return f"\"{article_1['title']}\" and \"{article_2['title']}\" cover different aspects, offering diverse perspectives on {', '.join(common_topics) if common_topics else 'various topics'}."
+
 
 def comparative_sentiment_analysis(articles):
     """
@@ -263,6 +269,7 @@ def comparative_sentiment_analysis(articles):
 
     return sentiment_summary
 
+
 def generate_final_sentiment_summary(articles, company):
     """
     Generates a dynamic final sentiment analysis based on sentiment distribution.
@@ -294,6 +301,7 @@ def generate_final_sentiment_summary(articles, company):
     else:
         return f"Mixed sentiment exists for {company}. Some reports highlight growth, while others raise concerns."
 
+
 def text_to_speech_hindi(text, file_name="sentiment_summary.mp3"):
     """
     Converts the given text into Hindi speech using gTTS and saves it as an MP3 file.
@@ -320,6 +328,7 @@ def text_to_speech_hindi(text, file_name="sentiment_summary.mp3"):
     except Exception as e:
         print(f" TTS Conversion failed: {e}")
         return None
+
 
 def generate_hindi_sentiment_summary(company, sentiment_analysis):
     """

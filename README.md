@@ -18,7 +18,7 @@ The **News Analyzer** is a full-stack application that:
 
 ###  Step 1: Clone the Repository  
 ```bash
-git clone https://github.com/Harshad/News-Analyzer.git
+git clone https://github.com/Harshad712/News-Analyzer.git
 cd news-analyzer
 ```
 
@@ -93,6 +93,39 @@ The backend is built using **FastAPI** and provides the following endpoints:
         "Topics": ["Electric Vehicles", "Stock Market", "Innovation"]
       }
     ],
+    "Comparative Sentiment Score": {
+    "Sentiment Distribution": {
+      "Positive": 3,
+      "Negative": 7,
+      "Neutral": 0
+    },
+    "Coverage Differences": [
+      {
+        "Comparison": "Article 1 highlights 'Tesla vandals face up to 20 years in prison, says attorney general', while Article 2 discusses 'Can Tesla's EVs win over India's price-conscious buyers?'.",
+        "Impact": "'Tesla vandals face up to 20 years in prison, says attorney general' highlights risks, while 'Can Tesla's EVs win over India's price-conscious buyers?' reassures investors with a positive narrative."
+      },
+      {
+        "Comparison": "Article 1 focuses on the Department of Justice, BBC, Oregon, Colorado, North Charleston, Tesla, Salem, South Carolina, US, whereas Article 2 is about Mumbai, EV, Fox News, MG Motors, BBC, Tata Motors, Mahindra, US, Hyundai, Delhi, JMK Research, HSBC Securities, Tesla, BMW, India, HSBC, Mercedes, Autocar India, Washington DC, JSW.",
+        "Impact": "Common themes include Tesla, BBC, US, but Article 1 uniquely covers the Department of Justice, Oregon, Colorado, North Charleston, Salem, South Carolina, while Article 2 focuses on EV, India, Delhi, Fox News, HSBC, JMK Research, HSBC Securities, MG Motors, Mumbai, BMW, Mercedes, Autocar India, Washington DC, Tata Motors, Mahindra, JSW, Hyundai."
+      }
+    ],
+    "Topic Overlap": {
+      "Common Topics": [
+        "Tesla",
+        "BBC",
+        "US"
+      ],
+      "Unique Topics in Article 1": [
+        "the Department of Justice",
+        "Oregon"
+      ],
+      "Unique Topics in Article 2": [
+        "EV",
+        "India"
+      ]
+    },
+    "Final Sentiment Analysis": "Recent news about Tesla has been mostly negative, suggesting challenges that could impact its market position.",
+  
     "Hindi TTS": "tesla_summary.mp3"
   }
   ```
@@ -119,7 +152,7 @@ The backend is built using **FastAPI** and provides the following endpoints:
 | API/Library      | Purpose |
 |-----------------|-----------------------------------------------------|
 | **Hugging Face Transformers** | Used for text summarization and sentiment analysis. |
-| **BeautifulSoup** | Scrapes news articles from `news.google.com`. |
+| **BeautifulSoup** | Scrapes news articles from `bbc.co.uk`. |
 | **Google TTS (gTTS)** | Converts the summary into Hindi speech. |
 | **FastAPI** | Handles API requests. |
 | **Gradio** | Provides a user-friendly web UI. |
