@@ -26,7 +26,7 @@ def analyze_news(company_name):
 
 # Gradio UI
 with gr.Blocks() as app:
-    gr.Markdown("# 📰 News Sentiment Analyzer")
+    gr.Markdown("# 📰 News Analyzer")
     company_input = gr.Textbox(label="Enter Company Name", placeholder="e.g., Tesla")
     analyze_button = gr.Button("Analyze News")
     output_box = gr.JSON(label="Analysis Result")
