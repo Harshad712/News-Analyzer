@@ -17,7 +17,7 @@ def analyze_news(company_name):
 
         # If an audio file is available, return it in Gradio format
         if audio_url and "http" in audio_url:
-            return data, (audio_url,)
+            return data, audio_url
         else:
             return data, None
     else:
@@ -30,7 +30,7 @@ with gr.Blocks() as app:
     company_input = gr.Textbox(label="Enter Company Name", placeholder="e.g., Tesla")
     analyze_button = gr.Button("Analyze News")
     output_box = gr.JSON(label="Analysis Result")
-    audio_output = gr.Audio(label="Hindi Audio", type="filepath")
+    audio_output = gr.Audio(label="Hindi Audio")
 
     analyze_button.click(analyze_news, inputs=company_input, outputs=[output_box, audio_output])
 
